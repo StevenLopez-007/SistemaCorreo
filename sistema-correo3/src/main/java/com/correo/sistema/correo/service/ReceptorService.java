@@ -1,5 +1,7 @@
 package com.correo.sistema.correo.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.correo.sistema.correo.model.Receptor;
 
 import com.correo.sistema.correo.model.models.Receptor.ReceptorModelActualizar;
 import com.correo.sistema.correo.model.models.Receptor.ReceptorModelCrear;
+import com.correo.sistema.correo.model.models.Receptor.SelectViewModel;
 import com.correo.sistema.correo.repository.ReceptorRepository;
 
 @Service
@@ -34,6 +37,16 @@ public class ReceptorService {
 	
 	public List<Receptor> listarReceptores (){
 		return recerepo.findAll();
+	}
+	
+	public List SelectReceptores() {
+		
+		List<Receptor> lista2 = new ArrayList<Receptor>();
+		
+		lista2 =  recerepo.findAll();
+	
+		
+		return lista2;
 	}
 	public void actualizar(ReceptorModelActualizar receptor1) {
 		Receptor receptor = new Receptor();

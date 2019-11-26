@@ -1,5 +1,6 @@
 package com.correo.sistema.correo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.correo.sistema.correo.model.Emisor;
 import com.correo.sistema.correo.model.Paquete;
+import com.correo.sistema.correo.model.Receptor;
 import com.correo.sistema.correo.model.models.Emisor.EmisorActualizarModel;
 import com.correo.sistema.correo.model.models.Emisor.EmisorModelCrear;
 import com.correo.sistema.correo.repository.EmisorRepository;
@@ -31,6 +33,15 @@ public class EmisorService {
 	}
 	public List<Emisor> ListarEmisores (){
 		return emirepo.findAll();
+	}
+	public List SelectReceptores() {
+		
+		List<Emisor> lista2 = new ArrayList<Emisor>();
+		
+		lista2 =  emirepo.findAll();
+	
+		
+		return lista2;
 	}
 	
 	public void actualizar(EmisorActualizarModel emisor1) {
