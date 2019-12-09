@@ -16,59 +16,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.correo.sistema.correo.model.Emisor;
 import com.correo.sistema.correo.model.Paquete;
+import com.correo.sistema.correo.model.PaqueteEnviar;
+import com.correo.sistema.correo.model.models.PaqueteEnviarActualizar;
+import com.correo.sistema.correo.model.models.PaqueteEnviarCrearModel;
 import com.correo.sistema.correo.model.models.PaqueteModel;
 import com.correo.sistema.correo.model.models.PaqueteModelCrear;
-import com.correo.sistema.correo.model.models.Emisor.EmisorActualizarModel;
-import com.correo.sistema.correo.model.models.Emisor.EmisorModelCrear;
-import com.correo.sistema.correo.repository.EmisorRepository;
-import com.correo.sistema.correo.service.EmisorService;
+import com.correo.sistema.correo.service.PaqueteEnviarService;
 import com.correo.sistema.correo.service.PaqueteService;
-
 
 @CrossOrigin(origins="*",allowedHeaders="*")
 @RestController
-@RequestMapping("/api/Emisor")
-public class EmisorResource {
+@RequestMapping("/api/paqueteEnviar")
+public class PaqueteEnviarResource {
 	@Autowired
-	EmisorService emisorservice;
-	
-	@Autowired
-	EmisorRepository emirepo;
+	PaqueteEnviarService paqueteenviarservice;
 	
 	@PostMapping(value = "/crear",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-public List<Emisor> create(@RequestBody final EmisorModelCrear emisor){
+public List<PaqueteEnviar> create(@RequestBody final PaqueteEnviarCrearModel paquete){
 	
-		emisorservice.crear(emisor);
+		paqueteenviarservice.crear(paquete);
 	
-	return emisorservice.ListarEmisores();
+	return paqueteenviarservice.ListarPaquetes();
 }
 	@GetMapping
-	public List<Emisor> Listar(){
-		return emisorservice.ListarEmisores();
+	public List<PaqueteEnviar> Listar(){
+		return paqueteenviarservice.ListarPaquetes();
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Emisor getForId(Model model,@PathVariable("id") Long id){
-		return emisorservice.getId(id);
+	public PaqueteEnviar getForId(Model model,@PathVariable("id") Long id){
+		return paqueteenviarservice.getId(id);
 	}
 	@PutMapping(value = "/actualizar",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public List<Emisor> actualizar(@RequestBody final EmisorActualizarModel emisor){
+	public List<PaqueteEnviar> actualizar(@RequestBody final PaqueteEnviarActualizar paquete){
 		
-		emisorservice.actualizar(emisor);
+		paqueteenviarservice.actualizar(paquete);
 		
-		return emisorservice.ListarEmisores();
+		return paqueteenviarservice.ListarPaquetes();
 	}
 	@DeleteMapping(value = "/eliminar/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public List<Emisor> eliminar(Model model,@PathVariable("id") Long id){
+	public List<PaqueteEnviar> actualizar(Model model,@PathVariable("id") Long id){
 		
-		emisorservice.eliminar(id);
+		paqueteenviarservice.eliminar(id);
 		
-		return emisorservice.ListarEmisores();
+		return paqueteenviarservice.ListarPaquetes();
 	}
-	
-	
+	@RequestMapping(value ="/correo/{correo}",method=RequestMethod.GET)
+    public List<PaqueteEnviar> findByCorreo(@PathVariable String correo) {
+        return paqueteenviarservice.getForCorreo(correo);
+    }
 }

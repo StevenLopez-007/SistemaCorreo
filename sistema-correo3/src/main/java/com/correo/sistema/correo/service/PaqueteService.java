@@ -52,6 +52,7 @@ public class PaqueteService {
 		paquete.setOrigen(paquete1.getOrigen());
 		paquete.setPeso(paquete1.getPeso());
 		paquete.setPrecio(paquete1.getPrecio());
+		paquete.setCorreo(paquete1.getCorreo());
 		
 		paqueterepo.save(paquete);
 	}
@@ -105,4 +106,7 @@ public void eliminar(Long id) {
 		paqueteAc = paqueterepo.findById(id).get();
 		paqueterepo.delete(paqueteAc);
 	}
+public List<Paquete> getForCorreo(String correo){
+	return paqueterepo.findByCorreo(correo);
+}
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.correo.sistema.correo.model.Emisor;
 import com.correo.sistema.correo.model.Paquete;
 import com.correo.sistema.correo.model.models.PaqueteModel;
 import com.correo.sistema.correo.model.models.PaqueteModelCrear;
@@ -61,5 +62,9 @@ public List<Paquete> create(@RequestBody final PaqueteModelCrear paquete){
 		
 		return paqueteservice.ListarPaquetes();
 	}
+	@RequestMapping(value ="/correo/{correo}",method=RequestMethod.GET)
+    public List<Paquete> findByCorreo(@PathVariable String correo) {
+        return paqueteservice.getForCorreo(correo);
+    }
 	
 }

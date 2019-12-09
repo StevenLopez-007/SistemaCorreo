@@ -42,13 +42,14 @@ public class Paquete {
 	private String peso;
 	private Integer cantidad;
 	private String numOrden;
+	private String correo;
 	
-	/*public Persona getPersona() {
-		return persona;
+	public String getCorreo() {
+		return correo;
 	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}*/
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
 	public Long getIdpaquete() {
 		return idpaquete;
 	}

@@ -45,9 +45,16 @@ public class PaqueteModelCrear {
 	public void setNumOrden(String numOrden) {
 		this.numOrden = numOrden;
 	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
 	private Float precio;
 	private String origen;
 	private String peso;
 	private Integer cantidad;
 	private String numOrden;
+	private String correo;
 }

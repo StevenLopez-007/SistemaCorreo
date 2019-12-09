@@ -42,7 +42,6 @@ public class Emisor {
 	private String DUI;
 	
 	
-	
 	public Long getIdpersona() {
 		return idemisor;
 	}
