@@ -1,5 +1,7 @@
 package com.correo.sistema.correo.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class PaqueteEnviarService {
 	
 	public void crear (PaqueteEnviarCrearModel paquete1) {
 		
-		PaqueteEnviar paquete = new PaqueteEnviar();
+		PaqueteEnviar paquete2 = new PaqueteEnviar();
 		
 		Emisor emisor = new Emisor();
 		emisor = emirepo.findById(paquete1.getIdreme()).get();
@@ -38,17 +40,18 @@ public class PaqueteEnviarService {
 		Receptor receptor = new Receptor();
 		receptor = recerepo.findById(paquete1.getIdrece()).get();
 		
-		paquete.setCantidadEnviar(paquete1.getCantidadEnviar());
-		paquete.setCorreoEnviar(paquete1.getCorreoEnviar());
-		paquete.setDestinoEnviar(paquete1.getDestinoEnviar());
-		paquete.setEmisor(emisor);
-		paquete.setFechaEnviar(paquete1.getFechaEnviar());
-		paquete.setFechaLlegada(paquete1.getFechaLlegada());
-		paquete.setNumOrdenEnviar(paquete1.getNumOrdenEnviar());
-		paquete.setPesoEnviar(paquete1.getPesoEnviar());
-		paquete.setPrecioEnviar(paquete1.getPrecioEnviar());
-		paquete.setReceptor(receptor);
+		paquete2.setCantidadEnviar(paquete1.getCantidadEnviar());
+		paquete2.setCorreoEnviar(paquete1.getCorreoEnviar());
+		paquete2.setDestinoEnviar(paquete1.getDestinoEnviar());
+		paquete2.setEmisor(emisor);
+		paquete2.setFechaEnviar(paquete1.getFechaEnviar());
+		paquete2.setFechaLlegada(paquete1.getFechaLlegada());
+		paquete2.setNumOrdenEnviar(paquete1.getNumOrdenEnviar());
+		paquete2.setPesoEnviar(paquete1.getPesoEnviar());
+		paquete2.setPrecioEnviar(paquete1.getPrecioEnviar());
+		paquete2.setReceptor(receptor);
 		
+		paqueteenviarepo.save(paquete2);
 	}
 	
 	public List<PaqueteEnviar> ListarPaquetes(){
@@ -82,6 +85,8 @@ public class PaqueteEnviarService {
 		paqueteAc.setDestinoEnviar(paquete.getDestinoEnviar());
 		paqueteAc.setPesoEnviar(paquete.getPesoEnviar());
 		paqueteAc.setPrecioEnviar(paquete.getPrecioEnviar());
+		paqueteAc.setFechaEnviar(paquete.getFechaEnviar());
+		paqueteAc.setFechaLlegada(paquete.getFechaLlegada());
 		paqueteenviarepo.save(paqueteAc);
 	}
 
@@ -93,9 +98,28 @@ public class PaqueteEnviarService {
 		
 	}
 	
-	public List<PaqueteEnviar> getForCorreo (String correo){
+	public List<PaqueteEnviar> getForCorreo (String correoEnviar){
 		
-		return paqueteenviarepo.findByCorreo(correo);
+		return paqueteenviarepo.findByCorreoEnviar(correoEnviar);
 		 
+	}
+	
+	public void actualizarEstadoTrue (Long id) {
+		PaqueteEnviar paquete = new PaqueteEnviar();
+		
+		paquete = paqueteenviarepo.findById(id).get();
+		
+		paquete.setEstado(true);
+		
+		paqueteenviarepo.save(paquete);
+	}
+	public void actualizarEstadoFalse (Long id) {
+		PaqueteEnviar paquete = new PaqueteEnviar();
+		
+		paquete = paqueteenviarepo.findById(id).get();
+		
+		paquete.setEstado(false);
+		
+		paqueteenviarepo.save(paquete);
 	}
 }

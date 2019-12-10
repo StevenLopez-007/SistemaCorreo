@@ -57,4 +57,18 @@ public class PaqueteModelCrear {
 	private Integer cantidad;
 	private String numOrden;
 	private String correo;
+	private String fechaLlegada;
+	private String fechaEntrega;
+	public String getFechaLlegada() {
+		return fechaLlegada;
+	}
+	public void setFechaLlegada(String fechaLlegada) {
+		this.fechaLlegada = fechaLlegada;
+	}
+	public String getFechaEntrega() {
+		return fechaEntrega;
+	}
+	public void setFechaEntrega(String fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
 }

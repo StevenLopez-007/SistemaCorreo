@@ -62,4 +62,8 @@ public List<Receptor> create(@RequestBody final ReceptorModelCrear receptor){
 		
 		return receptorservice.listarReceptores();
 	}
+	@RequestMapping(value="/select")
+	public List<Receptor> selectReceptor (){
+		return receptorservice.SelectReceptores();
+	}
 }

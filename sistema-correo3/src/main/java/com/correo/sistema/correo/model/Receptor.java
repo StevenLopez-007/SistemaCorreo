@@ -25,6 +25,14 @@ public class Receptor  {
 	public void setPaquete(List<Paquete> paquete) {
 		this.paquete = paquete;
 	}
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "emisor")
+	private List<PaqueteEnviar> paqueteEnviar = new ArrayList<PaqueteEnviar>();
+public List<PaqueteEnviar> getPaqueteEnviar() {
+		return paqueteEnviar;
+	}
+	public void setPaqueteEnviar(List<PaqueteEnviar> paqueteEnviar) {
+		this.paqueteEnviar = paqueteEnviar;
+	}
 public Receptor() {}
 
 

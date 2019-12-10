@@ -34,9 +34,9 @@ public class PaqueteEnviarResource {
 	
 	@PostMapping(value = "/crear",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-public List<PaqueteEnviar> create(@RequestBody final PaqueteEnviarCrearModel paquete){
+public List<PaqueteEnviar> create(@RequestBody final PaqueteEnviarCrearModel paquete1){
 	
-		paqueteenviarservice.crear(paquete);
+		paqueteenviarservice.crear(paquete1);
 	
 	return paqueteenviarservice.ListarPaquetes();
 }
@@ -64,8 +64,23 @@ public List<PaqueteEnviar> create(@RequestBody final PaqueteEnviarCrearModel paq
 		
 		return paqueteenviarservice.ListarPaquetes();
 	}
-	@RequestMapping(value ="/correo/{correo}",method=RequestMethod.GET)
-    public List<PaqueteEnviar> findByCorreo(@PathVariable String correo) {
-        return paqueteenviarservice.getForCorreo(correo);
+	@RequestMapping(value ="/correo/{correoEnviar}",method=RequestMethod.GET)
+    public List<PaqueteEnviar> findByCorreo(@PathVariable String correoEnviar) {
+        return paqueteenviarservice.getForCorreo(correoEnviar);
     }
+	
+	@PutMapping(value = "/actualizarEstadoTrue/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void actualizarEstadoTrue(@PathVariable("id") Long id){
+		
+		paqueteenviarservice.actualizarEstadoTrue(id);
+		
+	}
+	@PutMapping(value = "/actualizarEstadoFalse/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void actualizarEstadoFalse(@PathVariable("id") Long id){
+		
+		paqueteenviarservice.actualizarEstadoFalse(id);
+		
+	}
 }

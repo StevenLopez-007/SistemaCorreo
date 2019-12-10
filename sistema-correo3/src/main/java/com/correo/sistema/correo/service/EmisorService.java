@@ -66,4 +66,12 @@ public class EmisorService {
 	public void eliminar(Long id) {
 		emirepo.deleteById(id);		
 	}
+	public List<Emisor> selectEmisor(){
+List<Emisor> lista2 = new ArrayList<Emisor>();
+		
+		lista2 =  emirepo.findAll();
+	
+		
+		return lista2;
+	}
 }

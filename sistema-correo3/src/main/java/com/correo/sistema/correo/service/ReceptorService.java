@@ -12,7 +12,6 @@ import com.correo.sistema.correo.model.Receptor;
 
 import com.correo.sistema.correo.model.models.Receptor.ReceptorModelActualizar;
 import com.correo.sistema.correo.model.models.Receptor.ReceptorModelCrear;
-import com.correo.sistema.correo.model.models.Receptor.SelectViewModel;
 import com.correo.sistema.correo.repository.ReceptorRepository;
 
 @Service
@@ -39,7 +38,7 @@ public class ReceptorService {
 		return recerepo.findAll();
 	}
 	
-	public List SelectReceptores() {
+	public List<Receptor> SelectReceptores() {
 		
 		List<Receptor> lista2 = new ArrayList<Receptor>();
 		

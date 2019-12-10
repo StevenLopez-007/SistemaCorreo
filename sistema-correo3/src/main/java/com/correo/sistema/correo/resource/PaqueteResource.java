@@ -66,5 +66,18 @@ public List<Paquete> create(@RequestBody final PaqueteModelCrear paquete){
     public List<Paquete> findByCorreo(@PathVariable String correo) {
         return paqueteservice.getForCorreo(correo);
     }
-	
+	@PutMapping(value = "/actualizarEstadoTrue/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void actualizarEstadoTrue(@PathVariable("id") Long id){
+		
+		paqueteservice.actualizarEstadoTrue(id);
+		
+	}
+	@PutMapping(value = "/actualizarEstadoFalse/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void actualizarEstadoFalse(@PathVariable("id") Long id){
+		
+		paqueteservice.actualizarEstadoFalse(id);
+		
+	}
 }

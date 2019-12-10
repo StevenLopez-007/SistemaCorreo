@@ -11,6 +11,7 @@ public class PaqueteEnviarActualizar {
 	private Integer cantidadEnviar;
 	private String numOrdenEnviar;
 	
+	
 	public Long getIdreme() {
 		return idreme;
 	}

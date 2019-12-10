@@ -8,5 +8,5 @@ import com.correo.sistema.correo.model.PaqueteEnviar;
 
 public interface PaqueteEnviarRepository extends JpaRepository<PaqueteEnviar,Long> {
 	
-	List<PaqueteEnviar> findByCorreo (String correo);
+	public List<PaqueteEnviar> findByCorreoEnviar (String correoEnviar);
 }

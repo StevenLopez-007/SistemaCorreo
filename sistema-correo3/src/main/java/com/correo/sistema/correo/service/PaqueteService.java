@@ -1,6 +1,10 @@
 package com.correo.sistema.correo.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -12,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.correo.sistema.correo.model.Emisor;
 import com.correo.sistema.correo.model.Paquete;
-
+import com.correo.sistema.correo.model.PaqueteEnviar;
 import com.correo.sistema.correo.model.Receptor;
 import com.correo.sistema.correo.model.models.PaqueteModel;
 import com.correo.sistema.correo.model.models.PaqueteModelCrear;
@@ -53,6 +57,8 @@ public class PaqueteService {
 		paquete.setPeso(paquete1.getPeso());
 		paquete.setPrecio(paquete1.getPrecio());
 		paquete.setCorreo(paquete1.getCorreo());
+		paquete.setFechaEntrega(paquete1.getFechaEntrega());
+		paquete.setFechaLlegada(paquete1.getFechaLlegada());
 		
 		paqueterepo.save(paquete);
 	}
@@ -98,6 +104,8 @@ public class PaqueteService {
 			paqueteAc.setOrigen(paquete.getOrigen());
 			paqueteAc.setPeso(paquete.getPeso());
 			paqueteAc.setPrecio(paquete.getPrecio());
+			paqueteAc.setFechaEntrega(paquete.getFechaEntrega());
+			paqueteAc.setFechaLlegada(paquete.getFechaLlegada());
 			paqueterepo.save(paqueteAc);
 		}
 public void eliminar(Long id) {
@@ -108,5 +116,32 @@ public void eliminar(Long id) {
 	}
 public List<Paquete> getForCorreo(String correo){
 	return paqueterepo.findByCorreo(correo);
+}
+public void actualizarEstadoTrue (Long id) {
+	Paquete paquete = new Paquete();
+	
+	paquete = paqueterepo.findById(id).get();
+	
+	paquete.setEstado(true);
+	 Calendar fecha = new GregorianCalendar();
+	 
+	 int año = fecha.get(Calendar.YEAR);
+     int mes = fecha.get(Calendar.MONTH);
+     int dia = fecha.get(Calendar.DAY_OF_MONTH);
+     
+     String FechaFinal =  dia + "/" + (mes+1) + "/" + año;
+     paquete.setFechaEntrega(FechaFinal);
+     
+			 
+	paqueterepo.save(paquete);
+}
+public void actualizarEstadoFalse (Long id) {
+Paquete paquete = new Paquete();
+	
+	paquete = paqueterepo.findById(id).get();
+	
+	paquete.setEstado(false);
+	
+	paqueterepo.save(paquete);
 }
 }

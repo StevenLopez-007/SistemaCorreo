@@ -36,6 +36,7 @@ public class PaqueteEnviar {
 	private String correoEnviar;
 	private String fechaEnviar;
 	private String fechaLlegada;
+	private Boolean estado = false;
 	
 	public Long getIdpaqueteEnviar() {
 		return idpaqueteEnviar;
@@ -102,6 +103,12 @@ public class PaqueteEnviar {
 	}
 	public void setFechaLlegada(String fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
+	}
+	public Boolean getEstado() {
+		return estado;
+	}
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
 	}
 	
 }

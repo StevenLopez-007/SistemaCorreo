@@ -43,7 +43,29 @@ public class Paquete {
 	private Integer cantidad;
 	private String numOrden;
 	private String correo;
+	private Boolean estado = false;
 	
+	private String fechaLlegada;
+	public String getFechaLlegada() {
+		return fechaLlegada;
+	}
+	public void setFechaLlegada(String fechaLlegada) {
+		this.fechaLlegada = fechaLlegada;
+	}
+	public String getFechaEntrega() {
+		return fechaEntrega;
+	}
+	public void setFechaEntrega(String fechaEntrega) {
+		this.fechaEntrega = fechaEntrega;
+	}
+	private String fechaEntrega;
+	
+	public Boolean getEstado() {
+		return estado;
+	}
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
 	public String getCorreo() {
 		return correo;
 	}

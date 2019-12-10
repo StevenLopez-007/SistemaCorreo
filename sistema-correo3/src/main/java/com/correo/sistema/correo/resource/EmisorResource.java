@@ -69,6 +69,9 @@ public List<Emisor> create(@RequestBody final EmisorModelCrear emisor){
 		
 		return emisorservice.ListarEmisores();
 	}
-	
+	@RequestMapping(value="/select")
+	public List<Emisor> selectEmisor(){
+		return emisorservice.selectEmisor();
+	}
 	
 }
