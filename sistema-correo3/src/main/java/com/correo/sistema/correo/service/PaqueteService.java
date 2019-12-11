@@ -57,8 +57,15 @@ public class PaqueteService {
 		paquete.setPeso(paquete1.getPeso());
 		paquete.setPrecio(paquete1.getPrecio());
 		paquete.setCorreo(paquete1.getCorreo());
-		paquete.setFechaEntrega(paquete1.getFechaEntrega());
-		paquete.setFechaLlegada(paquete1.getFechaLlegada());
+		Calendar fecha = new GregorianCalendar();
+		 
+		 int año = fecha.get(Calendar.YEAR);
+	     int mes = fecha.get(Calendar.MONTH);
+	     int dia = fecha.get(Calendar.DAY_OF_MONTH);
+	     
+	     String FechaLlegada =  dia + "/" + (mes+1) + "/" + año;
+		//paquete.setFechaEntrega(paquete1.getFechaEntrega());
+		paquete.setFechaLlegada(FechaLlegada);
 		
 		paqueterepo.save(paquete);
 	}
