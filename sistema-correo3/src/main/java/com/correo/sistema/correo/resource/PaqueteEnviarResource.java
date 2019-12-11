@@ -69,18 +69,23 @@ public List<PaqueteEnviar> create(@RequestBody final PaqueteEnviarCrearModel paq
         return paqueteenviarservice.getForCorreo(correoEnviar);
     }
 	
-	@PutMapping(value = "/actualizarEstadoTrue/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+	@PutMapping(value = "/actualizarEstadoEnviado/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void actualizarEstadoTrue(@PathVariable("id") Long id){
+	public void actualizarEstadoEnviado(@PathVariable("id") Long id){
 		
-		paqueteenviarservice.actualizarEstadoTrue(id);
+		paqueteenviarservice.actualizarEstadoEnviado(id);
 		
 	}
-	@PutMapping(value = "/actualizarEstadoFalse/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
+	@PutMapping(value = "/actualizarEstadoLlegada/{id}",produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void actualizarEstadoFalse(@PathVariable("id") Long id){
+	public void actualizarEstadoLlegada(@PathVariable("id") Long id){
 		
-		paqueteenviarservice.actualizarEstadoFalse(id);
+		paqueteenviarservice.actualizarEstadoLlegada(id);
 		
 	}
+	@RequestMapping(value ="/numOrdenEnviar/{numOrdenEnviar}",method=RequestMethod.GET)
+    public List<PaqueteEnviar> findBynumOrdenEnviar(@PathVariable String numOrdenEnviar) {
+        return paqueteenviarservice.getFornumOrdenEnviar(numOrdenEnviar);
+    }
+	
 }

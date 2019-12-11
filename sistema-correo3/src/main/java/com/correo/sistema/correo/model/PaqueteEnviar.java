@@ -35,8 +35,15 @@ public class PaqueteEnviar {
 	private String numOrdenEnviar;
 	private String correoEnviar;
 	private String fechaEnviar;
+	private String fechaRecibido;
+	public String getFechaRecibido() {
+		return fechaRecibido;
+	}
+	public void setFechaRecibido(String fechaRecibido) {
+		this.fechaRecibido = fechaRecibido;
+	}
 	private String fechaLlegada;
-	private Boolean estado = false;
+	private String estado = "Recibido";
 	
 	public Long getIdpaqueteEnviar() {
 		return idpaqueteEnviar;
@@ -104,10 +111,10 @@ public class PaqueteEnviar {
 	public void setFechaLlegada(String fechaLlegada) {
 		this.fechaLlegada = fechaLlegada;
 	}
-	public Boolean getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(Boolean estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	

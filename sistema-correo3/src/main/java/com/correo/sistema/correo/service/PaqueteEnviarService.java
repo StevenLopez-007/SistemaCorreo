@@ -1,7 +1,9 @@
 package com.correo.sistema.correo.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +46,16 @@ public class PaqueteEnviarService {
 		paquete2.setCorreoEnviar(paquete1.getCorreoEnviar());
 		paquete2.setDestinoEnviar(paquete1.getDestinoEnviar());
 		paquete2.setEmisor(emisor);
-		paquete2.setFechaEnviar(paquete1.getFechaEnviar());
-		paquete2.setFechaLlegada(paquete1.getFechaLlegada());
+		//paquete2.setFechaEnviar(paquete1.getFechaEnviar());
+		//paquete2.setFechaLlegada(paquete1.getFechaLlegada());
+		 Calendar fecha = new GregorianCalendar();
+		 
+		 int año = fecha.get(Calendar.YEAR);
+	     int mes = fecha.get(Calendar.MONTH);
+	     int dia = fecha.get(Calendar.DAY_OF_MONTH);
+	     
+	     String FechaRecibido =  dia + "/" + (mes+1) + "/" + año;
+		paquete2.setFechaRecibido(FechaRecibido);
 		paquete2.setNumOrdenEnviar(paquete1.getNumOrdenEnviar());
 		paquete2.setPesoEnviar(paquete1.getPesoEnviar());
 		paquete2.setPrecioEnviar(paquete1.getPrecioEnviar());
@@ -104,22 +114,47 @@ public class PaqueteEnviarService {
 		 
 	}
 	
-	public void actualizarEstadoTrue (Long id) {
+	public void actualizarEstadoEnviado (Long id) {
 		PaqueteEnviar paquete = new PaqueteEnviar();
+		Calendar fecha = new GregorianCalendar();
+		 
+		 int año = fecha.get(Calendar.YEAR);
+	     int mes = fecha.get(Calendar.MONTH);
+	     int dia = fecha.get(Calendar.DAY_OF_MONTH);
+	     
+	     String FechaEnviado =  dia + "/" + (mes+1) + "/" + año;
 		
 		paquete = paqueteenviarepo.findById(id).get();
 		
-		paquete.setEstado(true);
+		paquete.setEstado("En transito");
+		paquete.setFechaEnviar(FechaEnviado);
 		
 		paqueteenviarepo.save(paquete);
 	}
-	public void actualizarEstadoFalse (Long id) {
+	public void actualizarEstadoLlegada (Long id) {
 		PaqueteEnviar paquete = new PaqueteEnviar();
-		
+		Calendar fecha = new GregorianCalendar();
+		 
+		 int año = fecha.get(Calendar.YEAR);
+	     int mes = fecha.get(Calendar.MONTH);
+	     int dia = fecha.get(Calendar.DAY_OF_MONTH);
+	     
+	     String FechaLlegada =  dia + "/" + (mes+1) + "/" + año;
 		paquete = paqueteenviarepo.findById(id).get();
 		
-		paquete.setEstado(false);
+		if(paquete.getEstado()!="Recibido")
+		{
+			paquete.setEstado("Entregado");
+			paquete.setFechaLlegada(FechaLlegada);
+			
+			paqueteenviarepo.save(paquete);
+		}
 		
-		paqueteenviarepo.save(paquete);
+	}
+	
+public List<PaqueteEnviar> getFornumOrdenEnviar (String numOrdenEnviar){
+		
+		return paqueteenviarepo.findByNumOrdenEnviar(numOrdenEnviar);
+		 
 	}
 }
