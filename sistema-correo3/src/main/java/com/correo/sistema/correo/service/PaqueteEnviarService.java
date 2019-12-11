@@ -95,8 +95,7 @@ public class PaqueteEnviarService {
 		paqueteAc.setDestinoEnviar(paquete.getDestinoEnviar());
 		paqueteAc.setPesoEnviar(paquete.getPesoEnviar());
 		paqueteAc.setPrecioEnviar(paquete.getPrecioEnviar());
-		paqueteAc.setFechaEnviar(paquete.getFechaEnviar());
-		paqueteAc.setFechaLlegada(paquete.getFechaLlegada());
+
 		paqueteenviarepo.save(paqueteAc);
 	}
 
